@@ -8,7 +8,6 @@ also_reload('lib/**/*.rb')
 ### Application Routes
 get('/') do
   @words = Word.all
-  @definitions = Definition.all
   erb(:index)
 end
 
@@ -16,6 +15,9 @@ end
 
 # Word Index
 get('/words') do; end
+
+# Word New
+get('/words/new') do; end
 
 # Word Create
 post('/words') do; end
@@ -38,6 +40,9 @@ delete('/word/:id') do; end
 # Definition Index
 get('/definitions') do; end
 
+# Definition New
+get('/definitions/new') do; end
+
 # Definition Create
 post('/definitions') do; end
 
@@ -52,6 +57,15 @@ put('/definition/:id') do; end
 
 # Definition Destroy
 delete('/definition/:id') do; end
+
+w = Word.new('test')
+w.save
+
+d = Definition.new(w.id, 'this is a test')
+d.save
+
+d2 = Definition.new(w.id, 'this is a only test')
+d2.save
 
 # get('/home') do
 #   new_word = params[:new_word]

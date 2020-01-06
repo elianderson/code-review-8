@@ -1,16 +1,26 @@
 <h1>Learn your Vocabulary</h1>
 
-<% if @definitions.any? %>
-<h5>Here is a list of your study words</h5>
+<% if @words.any? %>
+  <h5>Here is a list of your study words</h5>
   <ul>
-    <% @definitions.each do |x| %>
-      <li><%= x.id %> - <%= x.new_word %> : <%= x.new_definition %> . <%= x.alternate_definition %>
-        <a href="/home/edit"> EDIT </a> </li>
-        <% end %>
+    <% @words.each do |word| %>
+      <li><%= word.title %>
+        <ul>
+          <li> Definitions:</li>
+          <% word.definitions.each do |definition| %>
+            <li><%= definition.text %></li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
   </ul>
 <% else %>
   <p>There are currently no words to display.</p>
 <% end %>
+
+<a href='/words/new'> New Word</a>
+<a href='/definitions/new'> New Definition</a>
+
 <form action="/home" method="post">
 
   <label for="new_word">Fill in the blank with a word you want to learn: </label>
