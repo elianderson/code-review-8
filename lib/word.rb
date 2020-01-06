@@ -3,8 +3,8 @@ class Word
 
   @@words = []
 
-  def initialize(id, title)
-    @id = id
+  def initialize(title)
+    @id = rand(5)
     @title = title
   end
 
@@ -13,14 +13,14 @@ class Word
   end
 
   def self.find(id)
-    @@words.select { |word| word.id == id }
+    @@words.select { |word| word.id == id }.first
   end
 
   def save
-    @@word << self
+    @@words << self
   end
 
-  def delete
-    @@study_terms.delete(self.new_word)
+  def definitions
+    Definition.find_by_word_id(self.id)
   end
 end

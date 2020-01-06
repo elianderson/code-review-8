@@ -5,11 +5,17 @@ require('./lib/definition')
 require 'pry'
 also_reload('lib/**/*.rb')
 
+# Application Routes
 get('/') do
   @study_terms = Word.all
   @definitions = Definition.all
   erb(:home)
 end
+
+# Word Routes
+
+# Definition Routes
+
 get('/home') do
   new_word = params[:new_word]
   new_definition = params[:new_definition]
