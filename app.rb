@@ -17,23 +17,46 @@ end
 get('/words') do; end
 
 # Word New
-get('/words/new') do; end
+get('/words/new') do
+  erb :'words/new', layout: :layout
+end
 
 # Word Create
-post('/words') do; end
+post('/words') do
+  Word.new(params[:word]).save
+
+  redirect to('/')
+end
 
 # Word Show (Read)
-get('/word/:id') do; end
+get('/words/:id') do
+  @word = Word.find params[:id]
+
+  erb :'words/show'
+end
 
 # Word Edit
-get('/word/:id/edit') do; end
+get('/words/:id/edit') do
+  @word = Word.find params[:id]
+
+  erb :'words/edit'
+end
 
 # Word Update
-put('/word/:id') do; end
+put('/words/:id') do
+  @word = Word.find params[:id]
+  @word.title = params[:word]
+
+  redirect to("/words/#{@word.id}")
+end
 
 # Word Destroy
-delete('/word/:id') do; end
+delete('/words/:id') do
+  @word = Word.find params[:id]
+  @word.destroy
 
+  redirect to('/')
+end
 
 ### Definition Routes
 
@@ -47,25 +70,16 @@ get('/definitions/new') do; end
 post('/definitions') do; end
 
 # Definition Show (Read)
-get('/definition/:id') do; end
+get('/definitions/:id') do; end
 
 # Definition Edit
-get('/definition/:id/edit') do; end
+get('/definitions/:id/edit') do; end
 
 # Definition Update
-put('/definition/:id') do; end
+put('/definitions/:id') do; end
 
 # Definition Destroy
-delete('/definition/:id') do; end
-
-w = Word.new('test')
-w.save
-
-d = Definition.new(w.id, 'this is a test')
-d.save
-
-d2 = Definition.new(w.id, 'this is a only test')
-d2.save
+delete('/definitions/:id') do; end
 
 # get('/home') do
 #   new_word = params[:new_word]

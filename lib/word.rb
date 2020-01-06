@@ -4,7 +4,7 @@ class Word
   @@words = []
 
   def initialize(title)
-    @id = rand(5)
+    @id = rand(999999)
     @title = title
   end
 
@@ -13,7 +13,7 @@ class Word
   end
 
   def self.find(id)
-    @@words.select { |word| word.id == id }.first
+    @@words.select { |word| word.id == id.to_i }.first
   end
 
   def save

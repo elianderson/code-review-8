@@ -4,9 +4,8 @@
   <h5>Here is a list of your study words</h5>
   <ul>
     <% @words.each do |word| %>
-      <li><%= word.title %>
+      <li><%= word.id %> - <%= word.title %> <a href='words/<%= word.id %>'>Show</a> <a href='words/<%= word.id %>/edit'>Edit</a>
         <ul>
-          <li> Definitions:</li>
           <% word.definitions.each do |definition| %>
             <li><%= definition.text %></li>
           <% end %>
@@ -20,14 +19,3 @@
 
 <a href='/words/new'> New Word</a>
 <a href='/definitions/new'> New Definition</a>
-
-<form action="/home" method="post">
-
-  <label for="new_word">Fill in the blank with a word you want to learn: </label>
-  <input name="new_word" type="text" id="new_word" ><br>
-  <label for="new_definition">Fill in the blank with a definition: </label>
-  <input type="text" id="new_definition" name="new_definition"><br>
-  <label for="alternate_definition">Add another meaning here: </label>
-  <input  name="alternate_definition" type="text"><br>
-  <button type="submit" name="button">ADD</button>
-</form>

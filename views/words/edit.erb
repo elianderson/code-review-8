@@ -1,0 +1,6 @@
+<h1>Edit Word</h1>
+<form action="/words/<%= @word.id %>" method="post">
+  <input type="hidden" name="_method" value="PUT">
+  <%= erb :'words/_form' %>
+  <button type="submit" name="button">Update</button>
+</form>
